@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block title %}User Registation Info{% endblock title %}
+{% block content %}
+<div class='w-1/2 p-6 my-6 mx-auto bg-gray-100 rounded-xl'>
+    <h1 class='mb-6 text-3xl'>Sign Up</h1>
+    <form method='POST' action='.'>
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <label for="first_name" class='inline-block mb-2'>Firstname</label><br/>
+        <input type="text" name="first_name" placeholder="Firstname" maxlength="30" minlength="2" required id="id_first_name"><br/>
+        {{form.first_name.errors}}<br/>
+        <label for="last_name" class='inline-block mb-2'>Lastname</label><br/>
+        <input type="text" name="last_name" placeholder="Lastname" maxlength="30" minlength="2" required id="id_last_name"><br/>
+        {{form.last_name.errors}}<br/>
+        <label for="phone" class='inline-block mb-2'>Phone</label><br/>
+        <input type="text" name="phone" placeholder="Phone" maxlength="14" minlength="5" required id="id_phone"><br/>
+        {{form.phone.errors}}
+        <label for="phone" class='inline-block mb-2'>Transaction pin</label><br/>
+        <input type="text" name="transaction_pin" placeholder="Transaction pin" maxlength="4" minlength="4" required id="id_pin"><br/>
+        {{form.phone.errors}}
+
+        {% if form.errors or form.non_field_errors %}
+            <div class='mb-3 p-6bg-red-100 rounded-xl'>
+                {% for field in form  %}
+                    {{ field.errors }}
+                {% endfor %}
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        <button type="submit" class='py-4 px-8 text-lg bg-red-500 hover:bg-red-700 rounded-xl text-white'>continue</button><br/><br/>
+    </form>
+</div>
+{% endblock content %}

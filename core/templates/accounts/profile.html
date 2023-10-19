@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My Account{% endblock title %}
+
+{% block content %}
+    <div class='w-1/2 p-6 my-6 mx-auto bg-gray-100 rounded-xl'>
+        <h4><span>Welcome,</span> {{request.user.username}}</h4>
+
+        {% for p in profile %}
+        <div class="account-info">
+            <p><b>Account Balance</b>: ${{p.account_balance}}</p>
+            
+            <p><b>Account Number</b>: {{p.account_number}}</p>
+        </div>
+        <hr/><br/>
+        
+        {% endfor%}
+        
+    </div>
+{% endblock  %}

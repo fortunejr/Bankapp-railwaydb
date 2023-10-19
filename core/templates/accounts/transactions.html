@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My Account{% endblock title %}
+
+{% block content %}
+    <div class='w-1/2 p-6 my-6 mx-auto bg-gray-100 rounded-xl'>
+        <h4><span>Welcome,</span> {{request.user.username}}</h4>
+
+        {% for h in credit_history %}
+            <p><b>Type: </b>{{h.type}}</p>
+            <p><b>Amount: </b>${{h.amount_credited}}</p>
+            <p><b>Account name: </b>{{h.account_name}}</p>
+            <p><b>Account number: </b>{{h.account_number}}</p>
+            <p><b>Account Balance: </b>{{h.account_balance}}</p>
+            <p><b>Time of transaction: </b>{{h.time_of_transaction}}</p>
+
+            <hr/><br/>
+        {% endfor %}
+
+        {% for h in debit_history %}
+            <p><b>Type: </b>{{h.type}}</p>
+            <p><b>Amount: </b>${{h.amount_debited}}</p>
+            <p><b>Account name: </b>{{h.account_name}}</p>
+            <p><b>Account number: </b>{{h.account_number}}</p>
+            <p><b>Account Balance: </b>{{h.account_balance}}</p>
+            <p><b>Time of transaction: </b>{{h.time_of_transaction}}</p>
+
+            <hr/><br/>
+        {% endfor %}
+        
+    </div>
+{% endblock  %}

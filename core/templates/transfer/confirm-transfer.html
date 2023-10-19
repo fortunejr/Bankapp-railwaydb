@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Enter Transaction pin{% endblock title %}
+
+{% block content %}
+    <p>You are about to send {{amount}} to {{reciever_account}} || {{reciever_name}}</p>
+
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <input type="text" placeholder="Transaction pin" name="transaction_pin" maxlength="4" required id="id_pin"><br/>
+        {{form.account.errors}}<br/>
+        <button type="submit">Send</button>
+    </form>
+{% endblock content %}

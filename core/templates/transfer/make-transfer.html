@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Transfer funds to a user{% endblock title %}
+
+{% block content %}
+
+<div class='w-1/2 p-6 my-6 mx-auto bg-gray-100 rounded-xl'>
+    <h1 class='mb-6 text-3xl'>Send money</h1>
+    {% for a in account %}
+        <p>Account Balance: ${{a.account_balance}}</p>
+    {% endfor %}
+    <form method='POST' action='.'>
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+        <div class='mb-3'>
+            <input type="text" placeholder="Account Number" name="account_number" maxlength="15" required id="id_account"><br/>
+            {{form.account.errors}}<br/>
+        </div>
+
+
+        <div class='mb-3'>
+            <input type="text" placeholder="Amount" name="amount" minlength="1" required id="id_amount"><br/>
+            {{form.amount.errors}}<br/>
+        </div>
+
+        {% if form.errors or form.non_field_errors %}
+            <div class='mb-3 p-6bg-red-100 rounded-xl'>
+                {% for field in form  %}
+                    {{ field.errors }}
+                {% endfor %}
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <button type='submit' class='py-4 px-8 text-lg bg-red-500 hover:bg-red-700 rounded-xl text-white'>Continue</button>
+    </form>
+</div>
+
+{% endblock content %}
